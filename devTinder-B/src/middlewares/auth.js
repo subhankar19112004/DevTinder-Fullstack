@@ -6,7 +6,7 @@ const userAuth = async (req, res, next) => {
     // Read the token from the req cookies
     const { token } = req.cookies;
     if (!token) {
-      return res.status(401).json({ message: "Unauthorized" });
+      return res.status(401).send({ message: "Unauthorized" });
     }
 
     const decodedObj = await jwt.verify(token, "DEV@TINDER123");
@@ -17,7 +17,7 @@ const userAuth = async (req, res, next) => {
     if (!user) {
       return res
         .status(400)
-        .send("please try something or feel free to get help from us");
+        .send("please try something else or feel free to reach out to us");
     }
     req.user = user;
     // console.log("Logged in user id: " + _id);
