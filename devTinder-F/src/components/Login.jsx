@@ -9,6 +9,7 @@ import { BASE_URL } from "../utils/constants";
 const Login = () => {
   const [emailId, setEmailId] = useState("sahoo18@gmail.com");
   const [password, setPassword] = useState("Papun@123");
+  const [error,setError] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -22,8 +23,7 @@ const Login = () => {
     dispatch(addUser(res.data));
     navigate("/feed");  
     } catch (error) {
-      console.log(error);
-      throw error;
+      setError(error?.response?.data || "Something went wrong");
     }
   }; 
 
@@ -104,15 +104,9 @@ const Login = () => {
                   title="Must be more than 8 characters, including number, lowercase letter, uppercase letter"
                 />
               </label>
-              <p className="validator-hint hidden">
-                Must be more than 8 characters, including
-                <br />
-                At least one number <br />
-                At least one lowercase letter <br />
-                At least one uppercase letter
-              </p>
             </label>
           </div>
+          <p className="text-red-500">{error}</p>
           <div className="card-actions justify-center">
             <button
             onClick={handleLogin} 
