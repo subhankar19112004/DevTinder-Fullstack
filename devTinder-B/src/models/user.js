@@ -50,7 +50,7 @@ const userSchema = new mongoose.Schema(
     photoUrl: {
       type: String,
       default:
-        "https://d2u4q3iydaupsp.cloudfront.net/a9uAQu8AMFXIHukvIFkEfjpdYVQ88rwk0lECazSqIHZVAICdd6MSTKvzxCF2r1HKDA9sCalszOaLwOckoYgQZuORNkyDrwF3orGl5H2ogCS174Y7cilQYwVBOw6aFwqL",
+        "https://images.squarespace-cdn.com/content/v1/5a4b6d1f9f07f5d01c10f2b6/1628103438082-FCYKGPJLXWVR7SIN56AW/_I0A4428-Edit.jpg?format=2500w",
       validate(value) {
         if (!validator.isURL(value)) {
           throw new Error("Invalid Photo URL " + value);
@@ -61,6 +61,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       default:
         "Add your description here to show case your developing profile.",
+      maxLength: 800,
     },
     skills: {
       type: [String],

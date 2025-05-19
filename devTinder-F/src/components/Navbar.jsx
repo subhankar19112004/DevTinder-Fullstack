@@ -34,7 +34,7 @@ const Navbar = () => {
         <div className="flex items-center gap-3">
           {/* Welcome Text */}
           <p className="hidden sm:block text-sm sm:text-base">
-            Welcome, {user.firstName}
+            Howdy, {user.firstName}
           </p>
 
           {/* Dropdown Menu */}
