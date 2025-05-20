@@ -127,13 +127,18 @@ const EditProfile = ({ user }) => {
               <label className="flex items-center gap-2 mb-1 text-sm font-medium">
                 <Heart className="w-4 h-4" /> Gender
               </label>
-              <input
-                type="text"
-                className="input input-bordered w-full"
+              <select
+                className="select select-primary w-full"
                 value={gender}
-                placeholder="Male / Female / Other"
                 onChange={(e) => setGender(e.target.value)}
-              />
+              >
+                <option value="" disabled>
+                  Select Gender
+                </option>
+                <option value="male">male</option>
+                <option value="female">female</option>
+                <option value="other">other</option>
+              </select>
             </div>
 
             {/* About */}

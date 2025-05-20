@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, Links, useNavigate } from 'react-router-dom';
 import { BASE_URL } from '../utils/constants';
 import axios from 'axios';
 import { removrUser } from '../utils/useSlice';
@@ -32,6 +32,11 @@ const Navbar = () => {
 
       {user && (
         <div className="flex items-center gap-3">
+        <div className='flex  gap-2'>
+          <Link to={"/connections"}><button className="btn btn-sm  rounded-md">Connections</button></Link>
+           <Link to={"/requests"}><button className="btn btn-sm  rounded-md">Requests</button></Link>
+           <Link to={"/"}><button className="btn btn-sm  rounded-md">Home</button></Link>
+        </div>
           {/* Welcome Text */}
           <p className="hidden sm:block text-sm sm:text-base">
             Howdy, {user.firstName}
@@ -59,7 +64,7 @@ const Navbar = () => {
                   <span className="badge">New</span>
                 </Link>
               </li>
-              <li><a>Settings</a></li>
+              <li><a>Premium ⭐</a></li>
               <li><a onClick={handleLogout}>Logout</a></li>
             </ul>
           </div>
