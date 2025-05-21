@@ -30,8 +30,8 @@ const Connections = () => {
 
   if (connections.length === 0) return (
     <div className='flex justify-center my-10'>
-      <h1 className='font-bold text-2xl text-white'>
-        Hey Buddy, you do not have any connections 🧑‍🤝‍🧑. 
+      <h1 className='font-bold text-sm text-center md:text-lg lg:text-2xl sm:text-accent  text-white'>
+        Hey Buddy, you do not have any connections 🧑‍🤝‍🧑 
         <Link className='font-serif text-green-400' to={"/"}>Add some here</Link> to see your friend circle.
       </h1>
     </div>

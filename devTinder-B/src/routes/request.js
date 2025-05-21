@@ -45,7 +45,7 @@ requestRouter.post(
       });
       const data = await connectionRequest.save();
       res.json({
-        message: req.user.firstName + " " + status + " in " + "  " + touser.firstName ,
+        message: req.user.firstName + " " + status + " in " +  touser.firstName ,
         connectionRequest: data,
       });
     } catch (error) {
