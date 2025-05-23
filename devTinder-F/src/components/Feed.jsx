@@ -31,12 +31,12 @@ const Feed = () => {
     getFeed();
   }, []);
 
-  if (feed.length === 0) {
+  if (feed?.length === 0) {
     return (
       <>
         <div className="font-bold text-sm flex justify-center mt-[10%] items-center text-center md:text-lg lg:text-2xl sm:text-accent  text-white">
           {" "}
-          Hey {user.firstName} ufff... no users left for you as of now 😔{" "}
+          Hey {user?.firstName} ufff... no users left for you as of now 😔{" "}
         </div>
         <div className="font-bold text-sm flex justify-center items-center text-center md:text-lg lg:text-2xl sm:text-accent  text-white">
           <p>
