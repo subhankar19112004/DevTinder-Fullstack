@@ -19,7 +19,8 @@ const EditProfile = ({ user }) => {
   const [lastName, setLastName] = useState(user.lastName);
   const [age, setAge] = useState(user.age);
   const [gender, setGender] = useState(user.gender);
-  const [skills, setSkills] = useState(user.skills.join(", "));
+  const [skills, setSkills] = useState(user.skills || []);
+  const [newSkill, setNewSkill] = useState("");  // This will store the current skill being typed
   const [about, setAbout] = useState(user.about);
   const [photoUrl, setPhotoUrl] = useState(user.photoUrl);
   const [error, setError] = useState("");
@@ -27,6 +28,17 @@ const EditProfile = ({ user }) => {
   const [toastMessage, setToastMessage] = useState("");
 
   const dispatch = useDispatch();
+
+  const addSkill = () => {
+    if (newSkill && !skills.includes(newSkill)) {
+      setSkills([...skills, newSkill]);
+      setNewSkill(""); // Clear the input field after adding the skill
+    }
+  };
+
+  const removeSkill = (skillToRemove) => {
+    setSkills(skills.filter((skill) => skill !== skillToRemove));
+  };
 
   const saveProfile = async () => {
     setError(""); // Clear any previous errors
@@ -159,13 +171,40 @@ const EditProfile = ({ user }) => {
               <label className="flex items-center gap-2 mb-1 text-sm font-medium">
                 <Pencil className="w-4 h-4" /> Skills
               </label>
-              <input
-                type="text"
-                className="input input-bordered w-full"
-                value={skills}
-                placeholder="e.g., React, Node.js, MongoDB"
-                onChange={(e) => setSkills(e.target.value)}
-              />
+              <div className="flex flex-wrap gap-2">
+                {skills.map((skill, index) => (
+                  <span
+                    key={index}
+                    className="px-3 py-1 text-xs bg-gray-700 backdrop-blur-xl text-white rounded-full font-medium shadow-sm"
+                  >
+                    {skill}
+                    <button
+                      type="button"
+                      className="ml-2 text-sm text-red-500"
+                      onClick={() => removeSkill(skill)}
+                    >
+                      x
+                    </button>
+                  </span>
+                ))}
+              </div>
+              <div className="mt-2 flex gap-2">
+                <input
+                  type="text"
+                  className="input input-bordered w-full"
+                  value={newSkill}
+                  placeholder="Add a new skill"
+                  onChange={(e) => setNewSkill(e.target.value)}
+                  onKeyDown={(e) => e.key === "Enter" && addSkill()}
+                />
+                <button
+                  className="btn btn-primary"
+                  type="button"
+                  onClick={addSkill}
+                >
+                  Add Skill
+                </button>
+              </div>
             </div>
 
             {/* Error Message */}
