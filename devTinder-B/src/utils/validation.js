@@ -33,12 +33,12 @@ const validsateEditProfileData = (req) => {
 };
 
 const validateEditPassworData = (req) => {
-    const editPassword = ["password"];
-    const isEditAllow = Object.keys(req.body).every((field) =>
-        editPassword.includes(field)
-    );
-    return isEditAllow;
-}
+  const editPassword = ["password", "currPassword"];
+  const isEditAllow = Object.keys(req.body).every((field) =>
+    editPassword.includes(field),
+  );
+  return isEditAllow;
+};
 
 module.exports = {
     validateSignupData,
