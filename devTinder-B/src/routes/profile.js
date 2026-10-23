@@ -39,23 +39,31 @@ profileRouter.patch('/profile/edit', userAuth, async(req, res) => {
   }
 });
 
-//update password
-profileRouter.patch('/profile/password', userAuth, async(req, res)=> {
+//profile/password
+profileRouter.patch("/profile/password", userAuth, async (req, res) => {
   try {
-    if(!validateEditPassworData(req)){
+    const { currPassword, password } = req.body;
+
+    if (!validateEditPassworData(req)) {
       return res.status(400).send("Invalid fields in the request body");
     }
+
     const loggedInUser = req.user;
-    //Encrypt the password
-    const passwordHash = await bcrypt.hash(req.body.password, 10);
+
+    const isMatch = await bcrypt.compare(currPassword, loggedInUser.password);
+    if (!isMatch) {
+      return res.status(400).send("Current password is incorrect");
+    }
+
+    const passwordHash = await bcrypt.hash(password, 10);
     loggedInUser.password = passwordHash;
     await loggedInUser.save();
+
     res.send("Password updated successfully");
   } catch (error) {
     res.status(400).send("Error updating the password: " + error.message);
-    
   }
-})
+});
 
 
  
